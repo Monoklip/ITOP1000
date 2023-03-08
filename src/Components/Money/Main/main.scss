@@ -1,0 +1,53 @@
+.main{
+    width: 50%;
+    height: 500px;
+    margin: 50px auto;
+    border: 1px solid orange;
+    border-radius: 10px;
+    padding: 50px;
+    box-sizing: border-box;
+
+    h1{
+        color: orange;
+        text-align: center;
+    }
+    .main-buy{
+        width: 100%;
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-between;
+
+        input{
+            width: 45%;
+            height: 80px;
+            text-align: center;
+            font-size: 38px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid black;
+            border-radius: 10px;
+            color: orange;
+
+            &:focus{
+                outline: 2px solid orange;
+            }
+        }
+        select{
+            width: 45%;
+            height: 80px;
+            text-align: center;
+            font-size: 38px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid black;
+            border-radius: 10px;
+            color: orange;
+
+            &:focus{
+                outline: 2px solid orange;
+            }
+            option{
+                background: orange;
+                color: white;
+            }
+        }
+    }
+}
