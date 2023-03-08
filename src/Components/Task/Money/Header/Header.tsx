@@ -1,12 +1,11 @@
 import './header.scss';
 
-const Header = (props: { usd: number; eur: number; pln: number; uah: number; }) => {
+const Header = (props: { usd: number; eur: number; pln: number; }) => {
 
     const {
         usd,
         eur,
-        pln,
-        uah
+        pln
     } = props;
 
     return(

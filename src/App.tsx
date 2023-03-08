@@ -1,10 +1,11 @@
-import Money from "./Components/Money/Money";
+import { BrowserRouter } from "react-router-dom";
+import Task from "./Components/Task/Task";
 
 function App() {
   return (
-    <div className="App">
-      <Money/>
-    </div>
+    <BrowserRouter>
+      <Task/>
+    </BrowserRouter>
   );
 }
 

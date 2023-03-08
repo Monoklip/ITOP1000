@@ -3,7 +3,6 @@ import Header from './Header/Header';
 import Main from './Main/Main';
 import './money.scss';
 
-
 const Money = () => {
 
     const [url, setUrl] = useState<string>("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json");
@@ -29,7 +28,7 @@ const Money = () => {
 
     return(
         <div className='money'>
-            <Header usd={usd} eur={eur} pln={pln} uah={uah}/>
+            <Header usd={usd} eur={eur} pln={pln}/>
             <Main usd={usd} eur={eur} pln={pln} uah={uah}/>
         </div>
     )
