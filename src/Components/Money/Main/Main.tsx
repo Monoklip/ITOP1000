@@ -5,169 +5,266 @@ const Main = (props: { usd: number; eur: number; pln: number; uah: number; }) =>
 
     const { usd, eur, pln, uah } = props;
 
-    const [numberUp, setNumberUp] = useState<number>();
-    const [numberBottom, setNumberBottom] = useState<number>();
+    const [numberTop, setNumberTop] = useState<number>(0);
+    const [numberBot, setNumberBot] = useState<number>(0);
 
-    const [valueSelectUp, setValueSelectUp] = useState<string>('uah');
-    const [valueSelectBottom, setValueSelectBottom] = useState<string>('usd');
+    const [selectTop, setSelectTop] = useState<string>('uah');
+    const [selectBot, setSelectBot] = useState<string>('usd');
 
-    const numberUpHandleChange = (e: { target: { value: SetStateAction<string>; }; }) => {
-        setNumberUp(Number(e.target.value));
-
-        if (valueSelectUp === 'uah') {
-            if (valueSelectBottom === 'usd') {
-                setNumberBottom(Number(e.target.value) / Number(usd));
+    const numberTopHandleChange = (e: { target: { value: SetStateAction<string>; }; }) => {
+        if(Number(e.target.value)){
+            setNumberTop(Number(e.target.value));
+        
+            if (selectTop === 'uah') {
+                if (selectBot === 'usd') {
+                    setNumberBot(Number(e.target.value) / usd);
+                }
+                else if (selectBot === 'eur') {
+                    setNumberBot(Number(e.target.value) / eur);
+                }
+                else if (selectBot === 'pln') {
+                    setNumberBot(Number(e.target.value) / pln);
+                }
+                else{
+                    setNumberBot(Number(e.target.value));
+                }
             }
-            else if (valueSelectBottom === 'eur') {
-                setNumberBottom(Number(e.target.value) / Number(eur));
+            else if (selectTop === 'usd') {
+                if (selectBot === 'uah') {
+                    setNumberBot(Number(e.target.value) * usd);
+                }
+                else if (selectBot === 'eur') {
+                    setNumberBot(Number(e.target.value) * usd / eur);
+                }
+                else if (selectBot === 'pln') {
+                    setNumberBot(Number(e.target.value) * usd / pln);
+                }
+                else{
+                    setNumberBot(Number(e.target.value));
+                }
             }
-            else if (valueSelectBottom === 'pln') {
-                setNumberBottom(Number(e.target.value) / Number(pln));
+            else if (selectTop === 'eur') {
+                if (selectBot === 'uah') {
+                    setNumberBot(Number(e.target.value) * eur);
+                }
+                else if (selectBot === 'usd') {
+                    setNumberBot(Number(e.target.value) * eur / usd);
+                }
+                else if (selectBot === 'pln') {
+                    setNumberBot(Number(e.target.value) * eur / pln);
+                }
+                else{
+                    setNumberBot(Number(e.target.value));
+                }
             }
-        }
-        else if (valueSelectUp === 'usd') {
-            if (valueSelectBottom === 'uah') {
-                setNumberBottom(Number(e.target.value) * Number(usd));
-            }
-            else if (valueSelectBottom === 'eur') {
-                setNumberBottom(Number(e.target.value) / Number(eur));
-            }
-            else if (valueSelectBottom === 'pln') {
-                setNumberBottom(Number(e.target.value) / Number(pln));
-            }
-        }
-        else if (valueSelectUp === 'eur') {
-            if (valueSelectBottom === 'uah') {
-                setNumberBottom(Number(e.target.value) * Number(eur));
-            }
-            else if (valueSelectBottom === 'usd') {
-                setNumberBottom(Number(e.target.value) / Number(usd));
-            }
-            else if (valueSelectBottom === 'pln') {
-                setNumberBottom(Number(e.target.value) / Number(pln));
-            }
-        }
-        else if (valueSelectUp === 'pln') {
-            if (valueSelectBottom === 'uah') {
-                setNumberBottom(Number(e.target.value) * Number(uah));
-            }
-            else if (valueSelectBottom === 'usd') {
-                setNumberBottom(Number(e.target.value) / Number(usd));
-            }
-            else if (valueSelectBottom === 'eur') {
-                setNumberBottom(Number(e.target.value) / Number(eur));
+            else if (selectTop === 'pln') {
+                if (selectBot === 'uah') {
+                    setNumberBot(Number(e.target.value) * pln / uah);
+                }
+                else if (selectBot === 'usd') {
+                    setNumberBot(Number(e.target.value) * pln / usd);
+                }
+                else if (selectBot === 'eur') {
+                    setNumberBot(Number(e.target.value) * pln / eur);
+                }
+                else{
+                    setNumberBot(Number(e.target.value));
+                }
             }
         }
     };
 
-    const numberBottomHandleChange = (e: { target: { value: SetStateAction<string>; }; }) => {
-        setNumberBottom(e.target.value as unknown as number);
+    const numberBotHandleChange = (e: { target: { value: SetStateAction<string>; }; }) => {
+        if(Number(e.target.value)){
+            setNumberBot(Number(e.target.value));
 
-        if (valueSelectUp === 'uah') {
-            if (valueSelectBottom === 'usd') {
-                setNumberUp(Number(e.target.value) * Number(usd));
+            if (selectTop === 'uah') {
+                if (selectBot === 'usd') {
+                    setNumberTop(Number(e.target.value) * usd);
+                }
+                else if (selectBot === 'eur') {
+                    setNumberTop(Number(e.target.value) * eur);
+                }
+                else if (selectBot === 'pln') {
+                    setNumberTop(Number(e.target.value) * pln);
+                }
+                else{
+                    setNumberTop(Number(e.target.value));
+                }
             }
-            else if (valueSelectBottom === 'eur') {
-                setNumberUp(Number(e.target.value) * Number(eur));
+            else if (selectTop === 'usd') {
+                if (selectBot === 'uah') {
+                    setNumberTop(Number(e.target.value) / usd);
+                }
+                else if (selectBot === 'eur') {
+                    setNumberTop(Number(e.target.value) / usd * eur);
+                }
+                else if (selectBot === 'pln') {
+                    setNumberTop(Number(e.target.value) / usd * pln);
+                }
+                else{
+                    setNumberTop(Number(e.target.value));
+                }
             }
-            else if (valueSelectBottom === 'pln') {
-                setNumberUp(Number(e.target.value) * Number(pln));
+            else if (selectTop === 'eur') {
+                if (selectBot === 'uah') {
+                    setNumberTop(Number(e.target.value) / eur);
+                }
+                else if (selectBot === 'usd') {
+                    setNumberTop(Number(e.target.value) / eur * usd);
+                }
+                else if (selectBot === 'pln') {
+                    setNumberTop(Number(e.target.value) / eur * pln);
+                }
+                else{
+                    setNumberTop(Number(e.target.value));
+                }
             }
-        }
-        else if (valueSelectUp === 'usd') {
-            if (valueSelectBottom === 'uah') {
-                setNumberUp(Number(e.target.value) * Number(usd));
-            }
-            else if (valueSelectBottom === 'eur') {
-                setNumberUp(Number(e.target.value) / Number(eur));
-            }
-            else if (valueSelectBottom === 'pln') {
-                setNumberUp(Number(e.target.value) / Number(pln));
-            }
-        }
-        else if (valueSelectUp === 'eur') {
-            if (valueSelectBottom === 'uah') {
-                setNumberUp(Number(e.target.value) * Number(eur));
-            }
-            else if (valueSelectBottom === 'usd') {
-                setNumberUp(Number(e.target.value) / Number(usd));
-            }
-            else if (valueSelectBottom === 'pln') {
-                setNumberUp(Number(e.target.value) / Number(pln));
-            }
-        }
-        else if (valueSelectUp === 'pln') {
-            if (valueSelectBottom === 'uah') {
-                setNumberUp(Number(e.target.value) * Number(uah));
-            }
-            else if (valueSelectBottom === 'usd') {
-                setNumberUp(Number(e.target.value) / Number(usd));
-            }
-            else if (valueSelectBottom === 'eur') {
-                setNumberUp(Number(e.target.value) / Number(eur));
+            else if (selectTop === 'pln') {
+                if (selectBot === 'uah') {
+                    setNumberTop(Number(e.target.value) / pln * uah);
+                }
+                else if (selectBot === 'usd') {
+                    setNumberTop(Number(e.target.value) / pln * usd);
+                }
+                else if (selectBot === 'eur') {
+                    setNumberTop(Number(e.target.value) / pln * eur);
+                }
+                else{
+                    setNumberTop(Number(e.target.value));
+                }
             }
         }
     };
 
-    const valueUpHandleChange = (e: { target: { value: SetStateAction<string>; }; }) => {
-        setValueSelectUp(e.target.value);
+    const selectTopHandleChange = (e: { target: { value: SetStateAction<string>; }; }) => {
+        setSelectTop(e.target.value);
 
         if (e.target.value === 'uah') {
-            if (valueSelectBottom === 'usd') {
-                setNumberBottom(Number(numberUp) / Number(usd));
+            if (selectBot === 'usd') {
+                setNumberTop(Number(numberBot) * usd);
             }
-            else if (valueSelectBottom === 'eur') {
-                setNumberBottom(Number(numberUp) / Number(eur));
+            else if (selectBot === 'eur') {
+                setNumberTop(Number(numberBot) * eur);
             }
-            else if (valueSelectBottom === 'pln') {
-                setNumberBottom(Number(numberUp) / Number(pln));
+            else if (selectBot === 'pln') {
+                setNumberTop(Number(numberBot) * pln);
+            }
+            else{
+                setNumberTop(Number(numberBot));
             }
         }
         else if (e.target.value === 'usd') {
-            if (valueSelectBottom === 'uah') {
-                setNumberBottom(Number(numberUp) * Number(usd));
+            if (selectBot === 'uah') {
+                setNumberTop(Number(numberBot) / usd);
             }
-            else if (valueSelectBottom === 'eur') {
-                setNumberBottom(Number(numberUp) / Number(eur));
+            else if (selectBot === 'eur') {
+                setNumberTop(Number(numberBot) / usd * eur);
             }
-            else if (valueSelectBottom === 'pln') {
-                setNumberBottom(Number(numberUp) / Number(pln));
+            else if (selectBot === 'pln') {
+                setNumberTop(Number(numberBot) / usd * pln);
+            }
+            else{
+                setNumberTop(Number(numberBot));
             }
         }
         else if (e.target.value === 'eur') {
-            if (valueSelectBottom === 'uah') {
-                setNumberBottom(Number(numberUp) * Number(eur));
+            if (selectBot === 'uah') {
+                setNumberTop(Number(numberBot) / eur);
             }
-            else if (valueSelectBottom === 'usd') {
-                setNumberBottom(Number(numberUp) / Number(usd));
+            else if (selectBot === 'usd') {
+                setNumberTop(Number(numberBot) / eur * usd);
             }
-            else if (valueSelectBottom === 'pln') {
-                setNumberBottom(Number(numberUp) / Number(pln));
+            else if (selectBot === 'pln') {
+                setNumberTop(Number(numberBot) / eur * pln);
+            }
+            else{
+                setNumberTop(Number(numberBot));
             }
         }
         else if (e.target.value === 'pln') {
-            if (valueSelectBottom === 'uah') {
-                setNumberBottom(Number(numberUp) * Number(uah));
+            if (selectBot === 'uah') {
+                setNumberTop(Number(numberBot) / pln);
             }
-            else if (valueSelectBottom === 'usd') {
-                setNumberBottom(Number(numberUp) / Number(usd));
+            else if (selectBot === 'usd') {
+                setNumberTop(Number(numberBot) / pln * usd);
             }
-            else if (valueSelectBottom === 'eur') {
-                setNumberBottom(Number(numberUp) / Number(eur));
+            else if (selectBot === 'eur') {
+                setNumberTop(Number(numberBot) / pln * eur);
+            }
+            else{
+                setNumberTop(Number(numberBot));
             }
         }
     };
 
-    const valueBottomHandleChange = (e: { target: { value: SetStateAction<string>; }; }) => {
-        setValueSelectBottom(e.target.value);
+    const selectBotHandleChange = (e: { target: { value: SetStateAction<string>; }; }) => {
+        setSelectBot(e.target.value);
+
+        if (e.target.value === 'uah') {
+            if (selectTop === 'usd') {
+                setNumberBot(Number(numberTop) * usd);
+            }
+            else if (selectTop === 'eur') {
+                setNumberBot(Number(numberTop) * eur);
+            }
+            else if (selectTop === 'pln') {
+                setNumberBot(Number(numberTop) * pln);
+            }
+            else{
+                setNumberBot(Number(numberTop));
+            }
+        }
+        else if (e.target.value === 'usd') {
+            if (selectTop === 'uah') {
+                setNumberBot(Number(numberTop) / usd);
+            }
+            else if (selectTop === 'eur') {
+                setNumberBot(Number(numberTop) / usd * eur);
+            }
+            else if (selectTop === 'pln') {
+                setNumberBot(Number(numberTop) / usd * pln);
+            }
+            else{
+                setNumberBot(Number(numberTop));
+            }
+        }
+        else if (e.target.value === 'eur') {
+            if (selectTop === 'uah') {
+                setNumberBot(Number(numberTop) / eur);
+            }
+            else if (selectTop === 'usd') {
+                setNumberBot(Number(numberTop) / eur * usd);
+            }
+            else if (selectTop === 'pln') {
+                setNumberBot(Number(numberTop) / eur * pln);
+            }
+            else{
+                setNumberBot(Number(numberTop));
+            }
+        }
+        else if (e.target.value === 'pln') {
+            if (selectTop === 'uah') {
+                setNumberBot(Number(numberTop) / pln);
+            }
+            else if (selectTop === 'usd') {
+                setNumberBot(Number(numberTop) / pln * usd);
+            }
+            else if (selectTop === 'eur') {
+                setNumberBot(Number(numberTop) / pln * eur);
+            }
+            else{
+                setNumberBot(Number(numberTop));
+            }
+        }
     };
 
     return (
         <div className='main'>
             <h1>Обмін</h1>
             <div className="main-buy">
-                <input type="number" onChange={numberUpHandleChange} value={numberUp} />
-                <select name="" id="" onChange={valueUpHandleChange} value={valueSelectUp}>
+                <input type="text" onChange={numberTopHandleChange}  value={Number(numberTop.toFixed(2))} />
+                <select name="" id="" onChange={selectTopHandleChange} value={selectTop}>
                     <option value="uah">UAH</option>
                     <option value="usd">USD</option>
                     <option value="eur">EUR</option>
@@ -175,8 +272,8 @@ const Main = (props: { usd: number; eur: number; pln: number; uah: number; }) =>
                 </select>
             </div>
             <div className="main-buy">
-                <input type="number" onChange={numberBottomHandleChange} value={numberBottom} />
-                <select name="" id="" onChange={valueBottomHandleChange} value={valueSelectBottom}>
+                <input type="text" onChange={numberBotHandleChange} value={Number(numberBot.toFixed(2))} />
+                <select name="" id="" onChange={selectBotHandleChange} value={selectBot}>
                     <option value="usd">USD</option>
                     <option value="eur">EUR</option>
                     <option value="pln">PLN</option>

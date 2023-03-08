@@ -13,15 +13,15 @@ const Header = (props: { usd: number; eur: number; pln: number; uah: number; }) 
         <div className="header">
             <div className="header-money">
                 <p>Курс USA</p>
-                <p>{usd}</p>
+                <p>{usd.toFixed(2)}</p>
             </div>
             <div className="header-money">
                 <p>Курс EUR</p>
-                <p>{eur}</p>
+                <p>{eur.toFixed(2)}</p>
             </div>
             <div className="header-money">
                 <p>Курс PLN</p>
-                <p>{pln}</p>
+                <p>{pln.toFixed(2)}</p>
             </div>
         </div>
     )
